@@ -43,5 +43,14 @@ createApp({
                 this.currentItem = 0;
             }
         },
+        activateMainImg(index) {
+            this.currentItem = index;
+        },
+        showActiveThumb(index) {
+            if (this.currentItem === index) {
+                return 'active';
+            }
+            return '';
+        }
     }
 }).mount('#app');
