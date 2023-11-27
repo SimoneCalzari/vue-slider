@@ -29,41 +29,47 @@ createApp({
                 ],
             currentItem: 0,
             checkAutoPlay: false,
-            playFnVar: undefined
+            playFnVar: undefined,
         }
     },
     methods: {
+        // FN VAI INDIETRO NELLE THUMB
         prev() {
             this.currentItem--;
             if (this.currentItem < 0) {
                 this.currentItem = this.slides.length - 1;
             }
         },
+        // FN VAI AVANTI NELLE THUMB
         next() {
             this.currentItem++;
             if (this.currentItem > this.slides.length - 1 ) {
                 this.currentItem = 0;
             }
         },
+        // FN IMMAGINE ATTIVA GRANDE
         activateMainImg(index) {
             this.currentItem = index;
         },
+        // FN IMMAGINE ATTIVA TRA LE THUMBS
         showActiveThumb(index) {
             if (this.currentItem === index) {
                 return 'active';
             }
             return '';
         },
+        // LOGICA AUTOPLAY
         autoPlay() {
             if (this.checkAutoPlay === false) {
                 this.playFnVar = setInterval(this.next, 3000);
                 this.checkAutoPlay = true;
-            } else {
-                clearInterval(this.playFnVar);
-                this.checkAutoPlay = false;
-            }
+                return;
+            } 
+            clearInterval(this.playFnVar);
+            this.checkAutoPlay = false;
         },
     },
+    // PRIMO AUTOPLAY 
     mounted() {
         this.autoPlay();
     }
