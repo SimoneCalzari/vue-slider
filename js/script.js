@@ -28,6 +28,8 @@ createApp({
                 }
                 ],
             currentItem: 0,
+            checkAutoPlay: false,
+            playFnVar: undefined
         }
     },
     methods: {
@@ -53,11 +55,16 @@ createApp({
             return '';
         },
         autoPlay() {
-            setInterval(this.next, 3000);
+            if (this.checkAutoPlay === false) {
+                this.playFnVar = setInterval(this.next, 3000);
+                this.checkAutoPlay = true;
+            } else {
+                clearInterval(this.playFnVar);
+                this.checkAutoPlay = false;
+            }
         },
     },
     mounted() {
-        console.log('sono montato');
         this.autoPlay();
     }
 }).mount('#app');
