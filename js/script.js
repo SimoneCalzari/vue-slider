@@ -51,6 +51,13 @@ createApp({
                 return 'active';
             }
             return '';
-        }
+        },
+        autoPlay() {
+            setInterval(this.next, 3000);
+        },
+    },
+    mounted() {
+        console.log('sono montato');
+        this.autoPlay();
     }
 }).mount('#app');
